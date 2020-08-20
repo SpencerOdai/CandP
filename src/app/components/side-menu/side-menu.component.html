@@ -1,0 +1,11 @@
+  <div class="header">
+    <div class="close" (click)="toggleMenu()"><i class="icon-arrow-left"></i></div>
+  </div>
+  <div class="content">
+    <ul>
+      <li *ngFor="let item of menu" [routerLink]="item.link" routerLinkActive="active">
+        <i class="icon-{{item.icon}}"></i>
+        <span>{{item.text}}</span>
+      </li>
+    </ul>
+  </div>
