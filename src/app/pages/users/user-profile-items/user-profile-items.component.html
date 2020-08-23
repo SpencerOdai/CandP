@@ -1,0 +1,75 @@
+<p class="bio">
+  Lorem ipsum dolor sit amet, mei consul disputando te. No dicant ocurreret vim, pro imperdiet conceptam
+  voluptatum at. Ut eruditi omittam vix, vis et exerci blandit mediocrem, atqui legimus ad vix. Vis no mutat
+  eleifend, erant munere cum id, sed omnes copiosae percipit et. Ea usu quot viris consulatu. Ad pri sententiae
+  incorrupte necessitatibus.
+</p>
+
+<div class="user-card mat-elevation-z0" *ngIf="user.dob">
+  <i class="icon-calendar"></i>
+  <div class="detail">
+    <div class="title">{{ age }} years old</div>
+    <div class="small primary">{{ user.dob }}</div>
+  </div>
+</div>
+
+<div class="user-card mat-elevation-z0" *ngIf="user.email">
+  <i class="icon-envelope"></i>
+  <div class="detail">
+    <div class="title">Email</div>
+    <div class="small primary">{{ user.email }}</div>
+  </div>
+</div>
+
+<div class="user-card mat-elevation-z0" *ngIf="user.dob">
+  <i class="icon-calendar"></i>
+  <div class="detail">
+    <div class="title">{{ age }} years old</div>
+    <div class="small primary">{{ user.dob }}</div>
+  </div>
+</div>
+
+<div class="user-card mat-elevation-z0" *ngIf="user.address">
+  <i class="icon-directions"></i>
+  <div class="detail">
+    <div class="title">Lives in</div>
+    <div class="small primary" *ngIf="user.address">
+      {{ user.address.street }}
+      <span class="small primary" *ngIf="user.address.city">
+        {{ user.address.city }}, {{ user.address.zipcode }}
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="user-card mat-elevation-z0" *ngIf="user.company">
+  <i class="icon-notebook"></i>
+  <div class="detail">
+    <div class="title">Works at</div>
+    <div class="small primary">{{ user.company.name }}</div>
+  </div>
+</div>
+
+<div class="user-card mat-elevation-z0" *ngIf="user.username">
+  <i class="icon-lock"></i>
+  <div class="detail">
+    <div class="title">Username</div>
+    <div class="small primary">{{ user.username }}</div>
+  </div>
+</div>
+
+<div class="user-card mat-elevation-z0" *ngIf="user.phone">
+  <i class="icon-phone"></i>
+  <div class="detail">
+    <div class="title">Phone</div>
+    <div class="small primary">{{ user.phone }}</div>
+  </div>
+</div>
+
+<div class="user-card mat-elevation-z0" *ngIf="user.website">
+  <i class="icon-link"></i>
+  <div class="detail">
+    <div class="title">Website</div>
+    <div class="small primary">{{ user.website }}</div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div
+  id="nav-item-{{ i }}"
+  class="nav"
+  *ngFor="let item of menu; let i = index"
+  (mouseover)="getActive($event)"
+  (click)="getActive($event); event.emit(item)"
+>
+  {{ item }}
+</div>
+
+<div class="nav right"><ng-content></ng-content></div>
+<div
+  class="active"
+  style.left="{{ listItem?.offsetLeft }}px"
+  style.width="{{ listItem?.clientWidth }}px"
+></div>
+
+<div class="underline"></div>

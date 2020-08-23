@@ -2,7 +2,7 @@
   <div class="image">
     <img [src]="data.picture" [alt]="data.name" />
   </div>
-  <div class="detail">
+  <div class="detail" (click)="openDialog(data)">
     <div class="title">{{ data.name }}</div>
     <div class="caption mb-5" *ngIf="data.company">Works at {{ data.company.name }}</div>
     <div class="caption mb-5 text-primary" *ngIf="data.email ">

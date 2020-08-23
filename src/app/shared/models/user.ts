@@ -8,6 +8,7 @@ export interface IUser {
   phone: string;
   website: string;
   company: ICompany;
+  dob: string;
 }
 
 interface ICompany {

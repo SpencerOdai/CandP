@@ -1,1 +1,54 @@
-<p>detail works!</p>
+<div class="header bg-white">
+  <div class="spacer">User Detail</div>
+  <button class="btn white" mat-dialog-close><i class="icon-arrow-down"></i></button>
+</div>
+<div class="user">
+  <div class="user-profile">
+    <div class="image mat-elevation-z4">
+      <img [src]="data.picture" [alt]="data.name" />
+    </div>
+
+    <div class="detail">
+      <div class="display mb-10">{{ data.name }}</div>
+      <div class="small email">{{data.email}}</div>
+      <div class="small bio">
+        Lorem ipsum dolor sit amet, mei consul disputando te. No dicant ocurreret vim, pro imperdiet conceptam
+        voluptatum at. Ut eruditi omittam vix, vis et exerci blandit mediocrem, atqui legimus ad vix. Vis no mutat
+        eleifend, erant munere cum id, sed omnes copiosae percipit et. Ea usu quot viris consulatu. Ad pri sententiae
+        incorrupte necessitatibus.
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn icon primary text-white">
+        <i class="icon-options-vertical"></i>
+      </button>
+    </div>
+  </div>
+  <div class="content">
+    <app-nav-header [menu]="menu" (event)="selectedView = $event"></app-nav-header>
+
+    <ng-container [ngSwitch]="selectedView">
+      <!-- friends view -->
+      <ng-container *ngSwitchCase="'Friends'">
+        <div class="no-data">
+          <img src="assets/img/no-data.svg" alt="">
+          You have no Friends
+        </div>
+      </ng-container>
+
+      <!-- photos -->
+      <ng-container *ngSwitchCase="'Photos'">
+
+        <div class="no-data">
+          <img src="assets/img/no-data.svg" alt="">
+          You have no Friends
+        </div>
+      </ng-container>
+
+      <!-- photos -->
+      <ng-container *ngSwitchDefault>
+        <app-user-profile-items [user]="data"></app-user-profile-items>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

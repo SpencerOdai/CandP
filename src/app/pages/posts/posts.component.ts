@@ -26,13 +26,11 @@ export class PostsComponent implements OnInit {
     this.posts$ = this.appService.getPosts();
   }
 
-  openDialog(data): void {
+  openDialog(data: IPost): void {
     const config: MatDialogConfig<IPost> = {
       data
     };
     this.dialog.open(PostDetailComponent, config);
-
-
   }
 
 }

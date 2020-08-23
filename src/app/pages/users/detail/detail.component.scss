@@ -1,0 +1,94 @@
+@import "base.scss";
+:host {
+  display: block;
+  @extend .bg-white;
+  .header {
+    display: none;
+    height: 60px;
+    .spacer {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @extend .title;
+    }
+    button {
+      box-shadow: none;
+    }
+  }
+  .user {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    row-gap: 20px;
+    padding: 30px;
+    height: 80vh;
+    overflow: auto;
+    .user-profile {
+      display: flex;
+      .image {
+        height: 140px;
+        width: 140px;
+        border-radius: 100%;
+        overflow: hidden;
+        img {
+          max-width: 100%;
+        }
+      }
+      .detail {
+        flex: 1;
+        margin: 10px 20px 0 30px;
+        .email {
+          display: none;
+        }
+      }
+      .actions {
+        display: flex;
+        align-items: center;
+        button {
+          margin: 0 10px;
+        }
+      }
+    }
+
+    .content {
+      overflow: auto;
+      @extend .bg-white;
+      .no-data {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        @extend .title;
+        img {
+          height: 150px;
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+  @media (max-width: $max-mobile) {
+    height: 100vh;
+    .header {
+      display: flex;
+      box-shadow: $elevation;
+    }
+    .user {
+      height: calc(100vh - 100px);
+      padding: 20px;
+      .user-profile {
+        .image {
+          width: 60px;
+          height: 60px;
+        }
+        .detail {
+          .bio {
+            display: none;
+          }
+          .email {
+            display: inline;
+          }
+        }
+      }
+    }
+  }
+}

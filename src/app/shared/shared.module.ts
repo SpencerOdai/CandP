@@ -5,6 +5,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MomentModule } from 'angular2-moment';
 import { CardComponent } from './components/card/card.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { NavHeaderComponent } from './components/nav-header/nav-header.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { MarkdownPipe, OrderByPipe, SanitizePipe } from './pipes';
@@ -14,7 +15,8 @@ const COMPONENTS = [
   CardComponent,
   UserCardComponent,
   SearchBarComponent,
-  LoadingComponent
+  LoadingComponent,
+  NavHeaderComponent
 ];
 
 const PIPES = [

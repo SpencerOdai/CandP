@@ -1,0 +1,51 @@
+@import "base.scss";
+
+:host {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+
+  .bio {
+    display: none;
+  }
+
+  .user-card {
+    padding: 0 20px;
+    display: flex;
+    height: 80px;
+    overflow: hidden;
+    align-items: center;
+    box-shadow: $elevation;
+    @extend .bg-light;
+    &:hover {
+      box-shadow: $elevation-2;
+    }
+
+    .mat-icon {
+      height: 40px;
+      width: 40px;
+      font-size: 40px;
+      color: rgba(color(dark), 0.5);
+    }
+    .detail {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0 20px;
+
+      .title {
+        margin-bottom: 5px;
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+@media (max-width: $max-mobile) {
+  :host {
+    .bio {
+      display: block !important;
+    }
+  }
+}

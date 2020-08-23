@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { UserDetailComponent } from 'src/app/pages/users/detail/detail.component';
 import { IUser } from '../../models/user';
 
 @Component({
@@ -10,9 +12,19 @@ export class UserCardComponent implements OnInit {
 
   @Input() data: IUser;
 
-  constructor() { }
+  constructor(
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  openDialog(data: IUser): void{
+    const config: MatDialogConfig<IUser> = {
+      data
+    };
+    this.dialog.open(UserDetailComponent, config);
+
   }
 
 }
