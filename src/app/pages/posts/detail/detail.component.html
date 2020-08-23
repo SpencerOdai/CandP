@@ -1,0 +1,64 @@
+<div class="header bg-white">
+  <div class="spacer">Post Detail</div>
+  <button class="btn white" mat-dialog-close><i class="icon-arrow-down"></i></button>
+</div>
+<div class="post">
+  <div class="img">
+    <img [src]="data.images[currentImageIndex]" alt="" />
+    <div class="text-white left" (click)="prev()"><i class="icon-arrow-left"></i></div>
+    <div class="text-white right" (click)="next()"><i class="icon-arrow-right"></i></div>
+  </div>
+  <div class="comment-section">
+    <div class="header">
+      <img class="mat-elevation-z4" [src]="data.user.picture" alt="" />
+      <div class="detail">
+        <div class="title">{{ data.user.name }}</div>
+        <div class="caption">{{ data.updated | date: "longDate" }}</div>
+      </div>
+    </div>
+    <div class="content">
+      <strong class="paragraph mb-10">{{ data.title }}</strong>
+      <div class="caption">{{ data.body }}</div>
+      <div class="actions mt-10">
+        <span class="caption">
+          <button class="btn icon">
+            <i class="icon-like"></i>
+          </button>
+          107k
+        </span>
+        <span class="caption">
+          <button class="btn icon">
+            <i class="icon-bubble"></i>
+          </button>
+          52
+        </span>
+
+        <button class="btn icon">
+          <i class="icon-share"></i>
+        </button>
+      </div>
+    </div>
+    <div class="comments">
+      <div class="small primary title">View Comments</div>
+      <div class="messages" *ngIf="messages && messages.length > 0">
+        <div class="comment-item" *ngFor="let item of messages">
+          <img class="mat-elevation-z4" [src]="item.image" alt="" />
+          <div class="detail">
+            <div class="body">{{ item.text }}</div>
+            <div class="caption">{{ item.date | amTimeAgo }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="no-messages caption" *ngIf="messages && messages.length === 0">
+        No Comments
+      </div>
+      <div class="form-field border max-height">
+        <textarea class="border-medium" placeholder="Enter a comment" [(ngModel)]="message"></textarea>
+        <button class="btn secondary ml-10" (click)="pushMessage(message)">
+          <i class="icon-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-@import "variables.scss";
+@import "base.scss";
 
 :host {
   position: fixed;
@@ -9,13 +9,16 @@
   display: flex;
   align-items: center;
   z-index: 10;
+  @extend .bg-white;
   .menu {
     width: $side-menu-small;
+    text-align: center;
   }
   .logo {
     align-items: center;
     display: flex;
     padding: 0 30px;
+    cursor: pointer;
     img {
       width: 30px;
       margin-right: 15px;
@@ -35,5 +38,15 @@
       box-shadow: $elevation;
     }
     padding: 0 30px;
+  }
+
+  @media (max-width: $max-mobile) {
+    .logo {
+      margin-right: 0;
+      padding: 0;
+      span {
+        display: none;
+      }
+    }
   }
 }

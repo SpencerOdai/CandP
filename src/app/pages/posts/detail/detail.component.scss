@@ -1,0 +1,140 @@
+@import "base.scss";
+:host {
+  display: block;
+  .header {
+    display: none;
+    height: 60px;
+    .spacer {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @extend .title;
+    }
+    button {
+      box-shadow: none;
+    }
+  }
+  .post {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    height: 80vh;
+
+    .img {
+      max-height: 100%;
+      overflow: hidden;
+      position: relative;
+      .left,
+      .right {
+        position: absolute;
+        bottom: 0;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.2);
+        width: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .right {
+        right: 0;
+      }
+    }
+
+    .comment-section {
+      @extend .bg-white;
+      position: relative;
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      row-gap: 20px;
+      overflow: hidden;
+      height: inherit;
+      .header {
+        display: flex;
+        padding: 20px 20px 0;
+        img {
+          width: 40px;
+          height: 40px;
+          border-radius: 100%;
+          margin-right: 20px;
+          box-shadow: $elevation;
+        }
+      }
+      .content {
+        padding: 0 20px 0;
+        text-transform: capitalize;
+        .actions {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          color: color(medium);
+          .span {
+            display: flex;
+            align-items: center;
+            button {
+              color: color(medium);
+            }
+          }
+        }
+      }
+      .comments {
+        padding: 20px;
+        display: grid;
+        overflow: hidden;
+        grid-template-rows: 50px minmax(0, 1fr) 70px;
+        .title {
+          margin: 0 -20px;
+          padding: 10px 20px;
+          border-top: 1px solid color(light);
+          border-bottom: 1px solid color(light);
+        }
+        .messages {
+          overflow-y: auto;
+
+          .comment-item {
+            display: flex;
+            align-items: center;
+            border-radius: 32px;
+            padding: 5px 12px;
+            margin: 15px 0;
+            background-color: color(background);
+            border: 1px solid color(light);
+            img {
+              width: 32px;
+              height: 32px;
+              border-radius: 32px;
+              margin-right: 20px;
+            }
+            .detail {
+              flex: 1;
+            }
+          }
+        }
+
+        .no-messages {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: inherit;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $max-mobile) {
+    .header {
+      display: flex;
+    }
+    .post {
+      display: grid;
+      grid-template-columns: unset;
+      grid-template-rows: 1fr 300px;
+      height: calc(100vh - 60px);
+      .comment-section {
+        height: unset;
+        .comments {
+          display: none;
+        }
+      }
+    }
+  }
+}

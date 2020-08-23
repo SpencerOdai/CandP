@@ -1,5 +1,7 @@
 <div class="menu" (click)="toggleMenu()"><i class="icon-menu"></i></div>
-<div class="logo"><img src="assets/img/logo.svg" alt="">Post App</div>
+<div class="logo" routerLink="/"><img src="assets/img/logo.svg" alt="">
+  <span> Post App</span>
+</div>
 <div class="spacer"></div>
 <div class="user" *ngIf="user$ | async as user">
   <img [src]="user.picture" [alt]="user.name">

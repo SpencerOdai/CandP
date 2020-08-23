@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MomentModule } from 'angular2-moment';
 import { CardComponent } from './components/card/card.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
@@ -32,7 +34,9 @@ const PIPES = [
     ...COMPONENTS,
     ...PIPES,
     CommonModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    MomentModule
   ],
   imports: [
     CommonModule

@@ -84,7 +84,7 @@
   }
 
   @media (max-width: $max-mobile) {
-    width: 100%;
+    width: 100% !important;
     transform: translateX(-100vh);
     &.open {
       transform: translateX(0);

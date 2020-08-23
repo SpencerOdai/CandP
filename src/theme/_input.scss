@@ -16,4 +16,13 @@
     padding: 0;
     @extend .paragraph;
   }
+
+  &.border {
+    border-radius: 12px;
+    border-width: 1px;
+    border-style: solid;
+  }
+  &.max-height {
+    max-height: unset;
+  }
 }
