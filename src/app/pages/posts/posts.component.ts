@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AppService } from '../../shared/services/app.service';
 
 @Component({
   selector: 'app-posts',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent implements OnInit {
+  posts$: Observable<any>;
 
-  constructor() { }
+  constructor(
+    private appService: AppService
+  ) { }
+
+  get loading(): boolean{
+    return this.appService.loading;
+  }
 
   ngOnInit(): void {
+    this.posts$ = this.appService.getPosts();
   }
 
 }

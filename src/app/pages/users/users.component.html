@@ -1,1 +1,17 @@
-<p>users works!</p>
+<div class="header">
+  <div class="form-field" id="filter">
+    <select name="filter" placeholder="Filter by name" [(ngModel)]="filterVal">
+      <option value="">Filter by name</option>
+      <option [value]="item" *ngFor="let item of filterList">{{item}}</option>
+    </select>
+  </div>
+  <div class="spacer"></div>
+  <app-search-bar id="search" (event)="searchUser($event)"></app-search-bar>
+</div>
+<div class="wrapper">
+  <div class="content">
+    <app-user-card [data]="item" *ngFor="let item of (users$ | async) | filter: filterVal: 'name' "></app-user-card>
+  </div>
+</div>
+
+<app-loading *ngIf="loading"></app-loading>

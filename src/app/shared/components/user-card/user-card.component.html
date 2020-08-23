@@ -1,0 +1,24 @@
+<div class="user-card">
+  <div class="image">
+    <img [src]="data.picture" [alt]="data.name" />
+  </div>
+  <div class="detail">
+    <div class="title">{{ data.name }}</div>
+    <div class="caption mb-5" *ngIf="data.company">Works at {{ data.company.name }}</div>
+    <div class="caption mb-5 text-primary" *ngIf="data.email ">
+      {{ data.email }}
+    </div>
+    <div class="caption" *ngIf="data.username ">
+      Username: {{ data.username }}
+    </div>
+    <!-- <div class="caption" *ngIf="data.address">
+      Lives in {{ data.address.street }}, {{ data.address.city }}
+    </div> -->
+  </div>
+
+  <div class="action">
+    <button class="btn icon">
+      <i class="icon-options-vertical"></i>
+    </button>
+  </div>
+</div>

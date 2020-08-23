@@ -1,0 +1,33 @@
+@import "base.scss";
+
+:host {
+  display: block;
+  height: inherit;
+
+  .header {
+    display: flex;
+    * {
+      flex: 1;
+    }
+  }
+
+  .wrapper {
+    display: grid;
+    margin: 15px 0;
+
+    .content {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-gap: 20px;
+    }
+  }
+
+  @media (max-width: $max-mobile) {
+    .header {
+      #filter,
+      .spacer {
+        display: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,127 @@
+.btn {
+  padding: 10px 16px;
+  min-height: 44px;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  box-shadow: $elevation;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.icon {
+    width: 30px;
+    min-height: 30px;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+    @extend .paragraph;
+    &:hover,
+    &:active {
+      box-shadow: $elevation;
+    }
+  }
+
+  &:not(:disabled) {
+    @each $name, $color in $colors {
+      @if type-of($color) != "map" {
+        &.#{$name} {
+          &:not(.outline) {
+            background: $color;
+            &:hover,
+            &:active {
+              background: darken($color, 20);
+            }
+          }
+          &.outline {
+            border: 1px solid $color;
+            background: transparent;
+            color: $color;
+            &:active {
+              background: $color;
+              @extend .text-white;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &:disabled {
+    @extend .bg-medium;
+  }
+}
+
+.spinner {
+  -webkit-animation: rotate 2s linear infinite;
+  animation: rotate 2s linear infinite;
+  z-index: 2;
+  margin: 0 0 0 10px;
+  width: 15px;
+  height: 15px;
+
+  .path {
+    stroke: white;
+    stroke-linecap: round;
+    -webkit-animation: dash 1.5s ease-in-out infinite;
+    animation: dash 1.5s ease-in-out infinite;
+  }
+
+  & .path {
+    stroke-linecap: round;
+    -webkit-animation: dash 1.5s ease-in-out infinite;
+    animation: dash 1.5s ease-in-out infinite;
+  }
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .spinner {
+    display: none;
+  }
+}
+
+@-webkit-keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}

@@ -1,5 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { AppService } from 'src/app/services/app.service';
+import { AppService } from '../../shared/services/app.service';
 
 @Component({
   selector: 'app-side-menu',
@@ -8,7 +8,6 @@ import { AppService } from 'src/app/services/app.service';
 })
 export class SideMenuComponent implements OnInit {
 
-  // @Input() openMenu = false;
   menu = [
     {
       icon: 'picture',
@@ -16,7 +15,7 @@ export class SideMenuComponent implements OnInit {
       link: '/posts'
     },
     {
-      icon: 'users',
+      icon: 'people',
       text: 'Users',
       link: '/users'
     },

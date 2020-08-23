@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { AppService } from 'src/app/services/app.service';
+import { Observable } from 'rxjs';
+import { IUser } from 'src/app/shared/models/user';
+import { AppService } from '../../shared/services/app.service';
 
 @Component({
   selector: 'app-header',
@@ -9,6 +11,8 @@ import { AppService } from 'src/app/services/app.service';
 export class HeaderComponent implements OnInit {
 
   @Output() menuToggle = new EventEmitter<boolean>();
+  user$: Observable<IUser>;
+
   get openMenu(): boolean{
     return this.appService.openMenu;
   }
@@ -17,6 +21,7 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.user$ = this.appService.getUser(7);
   }
 
   toggleMenu(): void {

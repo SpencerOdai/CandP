@@ -1,0 +1,35 @@
+$colors: (
+  primary: #05668d,
+  accent: #00536a,
+  success: #0099ae,
+  warn: #ffb30f,
+  danger: #fe4a49,
+  dark: #242f40,
+  medium: #484a47,
+  light: #f2f2f2,
+  white: #ffffff,
+);
+
+@each $name, $color in $colors {
+  @if type-of($color) != "map" {
+    .text-#{$name} {
+      color: $color;
+    }
+
+    .bg-#{$name} {
+      background-color: $color;
+    }
+
+    .border-#{$name} {
+      border-color: $color;
+    }
+  }
+}
+
+@function color($color, $variant: null) {
+  @if ($variant !=null) {
+    @return map-get(map-get($colors, $color), $variant);
+  } @else {
+    @return map-get($colors, $color);
+  }
+}

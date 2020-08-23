@@ -1,0 +1,7 @@
+<div class="form-field">
+  <input type="text" #searchInput placeholder="Search" (keyup)="search.next($event.target.value)" />
+  <button class="btn icon white" name="close" (click)="clearSearch(searchInput)">
+    <i *ngIf="!hasValue" class="icon-magnifier"></i>
+    <i *ngIf="hasValue" class="icon-close"></i>
+  </button>
+</div>

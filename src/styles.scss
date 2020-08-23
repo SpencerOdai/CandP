@@ -1,5 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./theme/colors";
+@import "./theme/variables";
+@import "./theme/fonts";
+@import "./theme/button";
+@import "./theme/input";
+
+* {
+  outline: none;
+}
 body {
   margin: 0;
   overflow: hidden;
+  font-family: "Montserrat", sans-serif;
 }

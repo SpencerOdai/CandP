@@ -1,0 +1,21 @@
+@import "base.scss";
+
+:host {
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 5;
+  .loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    box-shadow: $elevation;
+    padding: 20px;
+    height: 100%;
+  }
+}

@@ -1,0 +1,47 @@
+<div class="card">
+  <div class="header">
+    <div class="image mat-elevation-z4">
+      <img [src]="data.user.picture" [alt]="data.name" />
+    </div>
+    <div class="detail">
+      <div class="title">{{ data.user.name }}</div>
+      <div class="caption">{{ data.updated | date }}</div>
+    </div>
+
+
+  </div>
+
+  <div class="content">
+    <p class="body mb-5 text-medium">{{ readAll ? data.body : data.body | slice: 0: 50 }}...</p>
+    <p class="link mt-0" (click)="readAll = !readAll">Read {{readAll ? 'Less': 'More'}}</p>
+    <div class="images">
+      <img class="mat-elevation-z4" [src]="image" alt="image-{{ i }}"
+        *ngFor="let image of data.images; let i = index" />
+    </div>
+  </div>
+
+  <div class="footer">
+    <button class="btn light">
+      <i class="icon-like"></i>
+    </button>
+    {{ data.likes }}
+    <span class="ml-20"></span>
+
+    <button class="btn light ">
+      <i class="icon-bubble"></i>
+    </button>
+    {{ data.comments }}
+
+    <span class="ml-20"></span>
+
+    <button class="btn light ">
+      <i class="icon-share"></i>
+    </button>
+
+    <div class="spacer"></div>
+
+    <button class="btn icon light">
+      <i class=" icon-star"></i>
+    </button>
+  </div>
+</div>

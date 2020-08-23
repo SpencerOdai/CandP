@@ -1,0 +1,19 @@
+.form-field {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  padding: 5px 16px;
+  border-radius: 30px;
+  max-height: 34px;
+  @extend .bg-white;
+
+  input,
+  select,
+  textarea {
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 0;
+    @extend .paragraph;
+  }
+}
