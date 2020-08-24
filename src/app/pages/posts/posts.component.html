@@ -1,5 +1,7 @@
+<button id="add-post" class="btn accent text-white fab" (click)="addPost()">Add Post</button>
+
 <div class="posts">
-  <app-card [data]="item" *ngFor="let item of (posts$ | async) | orderBy: '-updated'" (click)="openDialog(item)">
+  <app-card [data]="item" *ngFor="let item of (posts$ | async)">
   </app-card>
 </div>
 

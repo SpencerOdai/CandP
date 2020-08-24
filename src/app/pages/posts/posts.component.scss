@@ -1,6 +1,13 @@
 :host {
+  display: block;
+  position: relative;
   .posts {
     display: grid;
     gap: 20px;
+  }
+  .fab {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
   }
 }

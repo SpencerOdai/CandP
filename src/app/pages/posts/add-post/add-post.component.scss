@@ -1,0 +1,31 @@
+@import "base.scss";
+:host {
+  display: block;
+  @extend .bg-white;
+  .header {
+    display: none;
+    height: 60px;
+    .spacer {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @extend .title;
+    }
+    button {
+      box-shadow: none;
+    }
+  }
+  .post {
+    // height: calc(100vh - 120px);
+    padding: 30px 16px;
+  }
+
+  @media (max-width: $max-mobile) {
+    .header {
+      display: flex;
+    }
+    .post {
+    }
+  }
+}

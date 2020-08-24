@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { of, Subject } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { combineLatest } from 'rxjs/internal/observable/combineLatest';
 import { catchError, map, switchMap } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 import { IPost } from '../models/post';
 import { IUser } from '../models/user';
 
@@ -12,6 +14,9 @@ import { IUser } from '../models/user';
 export class AppService {
   openMenu = false;
   loading = false;
+  currentUser: IUser;
+  postsArr$ = new Subject<IPost[]>();
+  posts: IPost[];
 
   constructor(
     private http: HttpClient
@@ -20,7 +25,7 @@ export class AppService {
   getPosts(): Observable<IPost[]>{
     this.loading = true;
     let posts: IPost[] = [];
-    return this.http.get('https://jsonplaceholder.typicode.com/posts')
+    return this.http.get(`${environment.API_URL}/posts`)
     .pipe(
       switchMap((data: IPost[]) => {
         const users$ = [];
@@ -32,38 +37,46 @@ export class AppService {
       }),
       map((users: IUser[]) => {
         this.loading = false;
-        return posts.map(item => {
-          item.images = this.generateRandomImages();
+        this.posts =  posts.map(item => {
+          item.images = this.generateRandomImages(8);
           item.user = users.find(user => user.id === item.userId);
           item.updated = this.randomDate();
           return item;
-        });
+        }).sort((a, b) => a.updated > b.updated ? -1 : 1);
+        this.postsArr$.next(this.posts);
+        return this.posts;
       }),
-      catchError(e => {console.log(e); return []; })
+      catchError(e => {console.error(e); return of([]); })
     );
+  }
+
+  addPost(data: IPost): void{
+    data.id = this.posts.length + 1;
+    this.posts.unshift(data);
+    this.postsArr$.next(this.posts);
   }
 
   getUsers(): Observable<IUser[]>{
     this.loading = true;
-    return this.http.get(`https://jsonplaceholder.typicode.com/users`).pipe(
+    return this.http.get(`${environment.API_URL}/users`).pipe(
       map((users: IUser[]) => {
         this.loading = false;
         return users.map(user => {
-        user.picture = `https://i.pravatar.cc/200?img${user.id}`;
-        return user;
+          user.picture = `https://i.pravatar.cc/200?img${user.id}`;
+          return user;
         });
       }),
-      catchError(e => {console.log(e); return []; })
+      catchError(e => {console.error(e); return of([]); })
     );
   }
 
   getUser(id: number): Observable<IUser | any>{
-    return this.http.get(`https://jsonplaceholder.typicode.com/users/${id}`).pipe(
+    return this.http.get(`${environment.API_URL}/users/${id}`).pipe(
       map((user: IUser) => {
         user.picture = `https://i.pravatar.cc/200?img${user.id}`;
         return user;
       }),
-      catchError(e => {console.log(e); return null;})
+      catchError(e => {console.error(e); return of(null); })
     );
   }
 
@@ -77,8 +90,8 @@ export class AppService {
     return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime())).toISOString();
   }
 
-  generateRandomImages(): string[]{
-    const random = this.randomNumber(6);
+  generateRandomImages(max): string[]{
+    const random = this.randomNumber(max);
     const arr = Array(random).fill('').map((x, i) => i);
     return arr.map(_ => `https://unsplash.it/700/700?random${this.randomNumber(500)}`);
   }

@@ -8,7 +8,6 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { NavHeaderComponent } from './components/nav-header/nav-header.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
-import { MarkdownPipe, OrderByPipe, SanitizePipe } from './pipes';
 import { FilterPipe } from './pipes/filter.pipe';
 
 const COMPONENTS = [
@@ -20,9 +19,6 @@ const COMPONENTS = [
 ];
 
 const PIPES = [
-  MarkdownPipe,
-  OrderByPipe,
-  SanitizePipe,
   FilterPipe
 ];
 

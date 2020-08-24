@@ -1,5 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { of } from 'rxjs';
+import { FilterPipe } from 'src/app/shared/pipes/filter.pipe';
+import { LoadingComponent, SearchBarComponent, UserCardComponent } from 'src/tests';
 import { UsersComponent } from './users.component';
 
 describe('UsersComponent', () => {
@@ -8,7 +12,8 @@ describe('UsersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UsersComponent ]
+      declarations: [ UsersComponent, UserCardComponent, SearchBarComponent, FilterPipe, LoadingComponent ],
+      imports: [ HttpClientModule, FormsModule ]
     })
     .compileComponents();
   }));
@@ -21,5 +26,19 @@ describe('UsersComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('openMenu users$ to be defined', fakeAsync(() => {
+    spyOn(component['appService'], 'getUsers').and.callFake(() => of([{id: 1, name: 'John'}] as any));
+    component.ngOnInit();
+
+    tick();
+    expect(component.users$).toBeDefined();
+    expect(component.filterList).toEqual(['J']);
+  }));
+
+  it('should search user', () => {
+    component.searchUser('J');
+    expect(component.filterVal).toEqual('J');
   });
 });

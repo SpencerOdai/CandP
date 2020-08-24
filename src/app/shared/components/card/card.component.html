@@ -1,7 +1,7 @@
-<div class="card">
+<div class="card" (click)="openDialog(data)">
   <div class="header">
     <div class="image mat-elevation-z4">
-      <img [src]="data.user.picture" [alt]="data.name" />
+      <img [src]="data.user.picture" [alt]="data.user.name" />
     </div>
     <div class="detail">
       <div class="title">{{ data.user.name }}</div>
@@ -12,7 +12,8 @@
   </div>
 
   <div class="content">
-    <p class="body mb-5 text-medium">{{ readAll ? data.body : data.body | slice: 0: 50 }}...</p>
+    <p class="display mb-0">{{data.title}}</p>
+    <p class="body mb-5 text-medium">{{ readAll ? data.body : data.body | slice: 0: 50 }}</p>
     <p class="link mt-0" (click)="readAll = !readAll">Read {{readAll ? 'Less': 'More'}}</p>
     <div class="images">
       <img class="mat-elevation-z4" [src]="image" alt="image-{{ i }}"
@@ -24,13 +25,11 @@
     <button class="btn light">
       <i class="icon-like"></i>
     </button>
-    {{ data.likes }}
     <span class="ml-20"></span>
 
     <button class="btn light ">
       <i class="icon-bubble"></i>
     </button>
-    {{ data.comments }}
 
     <span class="ml-20"></span>
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-nav-header',
@@ -12,13 +12,16 @@ export class NavHeaderComponent implements AfterViewInit {
 
   listItem: HTMLElement;
 
-  constructor() { }
+  constructor(
+    private cdRef: ChangeDetectorRef
+  ) { }
 
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.listItem = document.querySelector('#nav-item-0');
+    this.listItem = document.querySelector('#nav-item-0');
+    if (this.listItem){
       this.listItem.classList.add('link-active');
-    }, 0);
+    }
+    this.cdRef.detectChanges();
 
   }
 

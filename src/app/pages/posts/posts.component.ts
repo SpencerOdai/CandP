@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { IPost } from 'src/app/shared/models/post';
 import { AppService } from '../../shared/services/app.service';
-import { PostDetailComponent } from './detail/detail.component';
+import { AddPostComponent } from './add-post/add-post.component';
 
 @Component({
   selector: 'app-posts',
@@ -11,7 +10,9 @@ import { PostDetailComponent } from './detail/detail.component';
   styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent implements OnInit {
-  posts$: Observable<any>;
+  get posts$(): Observable<any>{
+    return this.appService.postsArr$;
+  }
 
   constructor(
     private appService: AppService,
@@ -23,14 +24,17 @@ export class PostsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.posts$ = this.appService.getPosts();
+    this.appService.getPosts().subscribe();
   }
 
-  openDialog(data: IPost): void {
-    const config: MatDialogConfig<IPost> = {
-      data
-    };
-    this.dialog.open(PostDetailComponent, config);
+  addPost(): void{
+    const dialogRef = this.dialog.open(AddPostComponent);
+    dialogRef.afterClosed().subscribe(data => {
+      if (data){
+        this.appService.addPost(data);
+      }
+    });
   }
+
 
 }

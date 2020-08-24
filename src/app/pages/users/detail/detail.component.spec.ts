@@ -1,20 +1,26 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { NavHeaderComponent, UserProfileItemsComponent } from 'src/tests';
+import { UserDetailComponent } from './detail.component';
 
-import { DetailComponent } from './detail.component';
-
-describe('DetailComponent', () => {
-  let component: DetailComponent;
-  let fixture: ComponentFixture<DetailComponent>;
+describe('UserDetailComponent', () => {
+  let component: UserDetailComponent;
+  let fixture: ComponentFixture<UserDetailComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DetailComponent ]
+      declarations: [ UserDetailComponent, UserProfileItemsComponent, NavHeaderComponent ],
+      imports: [MatDialogModule],
+      providers: [
+        {provide: MatDialogRef, useValue: {} },
+        {provide: MAT_DIALOG_DATA, useValue: {data: null} }
+      ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DetailComponent);
+    fixture = TestBed.createComponent(UserDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -9,23 +9,23 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 })
 export class SearchBarComponent implements OnInit {
 
-  public search: Subject<string> = new Subject<string>();
+  search: Subject<string> = new Subject<string>();
 
-  @Output() public event: EventEmitter<any> = new EventEmitter<any>();
-  public hasValue: boolean;
+  @Output() event: EventEmitter<any> = new EventEmitter<any>();
+  hasValue: boolean;
 
   constructor() {}
 
-  public ngOnInit(): void {
-    this._searchSubscription();
+  ngOnInit(): void {
+    this.searchSubscription();
   }
 
-  public clearSearch(input: { value: string }): void {
+  clearSearch(input: { value: string }): void {
     this.search.next('');
     input.value = '';
   }
 
-  private _searchSubscription(): void {
+  searchSubscription(): void {
       this.search
         .pipe(
           map((value) => value),

@@ -32,9 +32,16 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.full-width {
+  width: 100%;
+}
+
 @media (max-width: $max-mobile) {
   .cdk-overlay-pane {
     max-width: 100% !important;
+    width: 100% !important;
+    height: 100% !important;
     .mat-dialog-container {
       padding: 0 !important;
       border-radius: 0 !important;

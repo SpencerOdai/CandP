@@ -22,6 +22,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.user$ = this.appService.getUser(7);
+    this.user$.subscribe(user => {
+      this.appService.currentUser = user;
+    });
   }
 
   toggleMenu(): void {

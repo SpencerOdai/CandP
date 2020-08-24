@@ -17,11 +17,17 @@ export class UserProfileItemsComponent implements OnInit {
     this.age = this.calculateAge(this.user.dob);
   }
 
-  calculateAge(dob: string = new Date().toISOString()): number {
-    const diffMs = Date.now() - new Date(dob).getTime();
-    const ageDt = new Date(diffMs);
+  calculateAge(dob: any): number {
+    let ageDt: Date;
+    if (dob){
+      const diffMs = Date.now() - new Date(dob).getTime();
+      ageDt = new Date(diffMs);
+      return Math.abs(ageDt.getUTCFullYear() - 1970);
+    } else{
+      return 0;
+    }
 
-    return Math.abs(ageDt.getUTCFullYear() - 1970);
+
 }
 
 }
